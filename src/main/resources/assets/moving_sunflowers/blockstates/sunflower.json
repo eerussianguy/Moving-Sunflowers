@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "half=lower,stage=0": {
+      "model": "minecraft:block/sunflower_bottom"
+    },
+	"half=lower,stage=1": {
+      "model": "minecraft:block/sunflower_bottom"
+    },
+	"half=lower,stage=2": {
+      "model": "minecraft:block/sunflower_bottom"
+    },
+    "half=upper,stage=0": {
+      "model": "minecraft:block/sunflower_top"
+    },
+    "half=upper,stage=1": {
+      "model": "moving_sunflowers:block/sunflower_top_1"
+    },
+    "half=upper,stage=2": {
+      "model": "moving_sunflowers:block/sunflower_top_2"
+    }
+  }
+}

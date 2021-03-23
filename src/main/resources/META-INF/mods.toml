@@ -1,0 +1,26 @@
+modLoader="javafml"
+loaderVersion="[35,)"
+license="MIT"
+#issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/"
+[[mods]]
+modId="moving_sunflowers"
+version="0.1" #mandatory
+displayName="Moving Sunflowers"
+#displayURL="https://change.me.to.your.mods.homepage.example.invalid/"
+authors="EERussianguy"
+# The description text for the mod (multi line!) (#mandatory)
+description='''
+Simple mod that adds sunflowers that move with the daytime.
+'''
+[[dependencies.moving_sunflowers]]
+    modId="forge"
+    mandatory=true
+    versionRange="[35,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.moving_sunflowers]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.4,1.17)"
+    ordering="NONE"
+    side="BOTH"
