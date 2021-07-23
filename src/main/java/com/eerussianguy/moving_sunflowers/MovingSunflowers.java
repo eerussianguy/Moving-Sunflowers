@@ -3,7 +3,7 @@ package com.eerussianguy.moving_sunflowers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -39,6 +39,6 @@ public class MovingSunflowers
 
     private void clientSetup(final FMLClientSetupEvent event)
     {
-        RenderTypeLookup.setRenderLayer(MSRegistry.SUNFLOWER.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(MSRegistry.SUNFLOWER.get(), RenderType.cutout());
     }
 }

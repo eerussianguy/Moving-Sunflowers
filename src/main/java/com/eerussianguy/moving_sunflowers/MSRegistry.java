@@ -1,14 +1,14 @@
 package com.eerussianguy.moving_sunflowers;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.TallBlockItem;
-import net.minecraft.world.gen.blockplacer.BlockPlacerType;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.DoubleHighBlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.levelgen.feature.blockplacers.BlockPlacerType;
+import net.minecraft.world.level.material.Material;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -21,7 +21,7 @@ public class MSRegistry
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
     public static final DeferredRegister<BlockPlacerType<?>> BLOCK_PLACER_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_PLACER_TYPES, MOD_ID);
 
-    public static final RegistryObject<Block> SUNFLOWER = BLOCKS.register("sunflower", () -> new MovingSunflowerBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS).randomTicks()));
-    public static final RegistryObject<Item> SUNFLOWER_ITEM = ITEMS.register("sunflower", () -> new TallBlockItem(SUNFLOWER.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
+    public static final RegistryObject<Block> SUNFLOWER = BLOCKS.register("sunflower", () -> new MovingSunflowerBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS).randomTicks()));
+    public static final RegistryObject<Item> SUNFLOWER_ITEM = ITEMS.register("sunflower", () -> new DoubleHighBlockItem(SUNFLOWER.get(), new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
     public static final RegistryObject<BlockPlacerType<SunflowerBlockPlacer>> SUNFLOWER_PLACER = BLOCK_PLACER_TYPES.register("sunflower", () -> new BlockPlacerType<>(SunflowerBlockPlacer.CODEC));
 }
