@@ -39,6 +39,6 @@ public class MovingSunflowers
 
     private void clientSetup(final FMLClientSetupEvent event)
     {
-        RenderTypeLookup.setRenderLayer(MSRegistry.SUNFLOWER.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(MSRegistry.SUNFLOWER.get(), RenderType.cutout());
     }
 }

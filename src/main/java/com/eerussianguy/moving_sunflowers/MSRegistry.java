@@ -1,7 +1,5 @@
 package com.eerussianguy.moving_sunflowers;
 
-import java.util.function.Supplier;
-
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -23,7 +21,7 @@ public class MSRegistry
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
     public static final DeferredRegister<BlockPlacerType<?>> BLOCK_PLACER_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_PLACER_TYPES, MOD_ID);
 
-    public static final RegistryObject<Block> SUNFLOWER = BLOCKS.register("sunflower", () -> new MovingSunflowerBlock(AbstractBlock.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT).tickRandomly()));
-    public static final RegistryObject<Item> SUNFLOWER_ITEM = ITEMS.register("sunflower", () -> new TallBlockItem(SUNFLOWER.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
+    public static final RegistryObject<Block> SUNFLOWER = BLOCKS.register("sunflower", () -> new MovingSunflowerBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS).randomTicks()));
+    public static final RegistryObject<Item> SUNFLOWER_ITEM = ITEMS.register("sunflower", () -> new TallBlockItem(SUNFLOWER.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
     public static final RegistryObject<BlockPlacerType<SunflowerBlockPlacer>> SUNFLOWER_PLACER = BLOCK_PLACER_TYPES.register("sunflower", () -> new BlockPlacerType<>(SunflowerBlockPlacer.CODEC));
 }

@@ -39,8 +39,8 @@ public class ForgeEventHandler
      */
     private static boolean serializeAndCompareFeature(ConfiguredFeature<?, ?> found, ConfiguredFeature<?, ?> registered)
     {
-        Optional<JsonElement> foundSerialized = ConfiguredFeature.CODEC.encode(found, JsonOps.INSTANCE, JsonOps.INSTANCE.empty()).get().left();
-        Optional<JsonElement> registeredSerialized = ConfiguredFeature.CODEC.encode(registered, JsonOps.INSTANCE, JsonOps.INSTANCE.empty()).get().left();
+        Optional<JsonElement> foundSerialized = ConfiguredFeature.DIRECT_CODEC.encode(found, JsonOps.INSTANCE, JsonOps.INSTANCE.empty()).get().left();
+        Optional<JsonElement> registeredSerialized = ConfiguredFeature.DIRECT_CODEC.encode(registered, JsonOps.INSTANCE, JsonOps.INSTANCE.empty()).get().left();
 
         if (!foundSerialized.isPresent() || !registeredSerialized.isPresent()) return false;
         return foundSerialized.equals(registeredSerialized);

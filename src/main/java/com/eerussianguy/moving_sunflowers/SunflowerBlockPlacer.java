@@ -19,7 +19,7 @@ public class SunflowerBlockPlacer extends BlockPlacer
 
     @Override
     @Nonnull
-    protected BlockPlacerType<?> getBlockPlacerType() {
+    protected BlockPlacerType<?> type() {
         return MSRegistry.SUNFLOWER_PLACER.get();
     }
 

@@ -25,15 +25,15 @@ public class MovingSunflowerBlock extends TallFlowerBlock
     public MovingSunflowerBlock(Properties properties)
     {
         super(properties);
-        setDefaultState(getStateContainer().getBaseState().with(STAGE, 0).with(HALF, DoubleBlockHalf.LOWER));
+        registerDefaultState(getStateDefinition().any().setValue(STAGE, 0).setValue(HALF, DoubleBlockHalf.LOWER));
     }
 
     @SuppressWarnings("deprecation")
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random)
     {
-        if (!world.isRemote() && state.get(HALF) == DoubleBlockHalf.UPPER)
+        if (!world.isClientSide && state.getValue(HALF) == DoubleBlockHalf.UPPER)
         {
-            world.setBlockState(pos, state.with(STAGE, getStageForTime(world.getDayTime())), 2);
+            world.setBlock(pos, state.setValue(STAGE, getStageForTime(world.getDayTime())), 2);
         }
     }
 
@@ -43,21 +43,21 @@ public class MovingSunflowerBlock extends TallFlowerBlock
         BlockState state = super.getStateForPlacement(context);
         if (state != null)
         {
-            state = state.with(STAGE, getStageForTime(context.getWorld().getDayTime()));
+            state = state.setValue(STAGE, getStageForTime(context.getLevel().getDayTime()));
         }
         return state;
     }
 
     @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack)
+    public void setPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack)
     {
-        worldIn.setBlockState(pos.up(), this.getDefaultState().with(HALF, DoubleBlockHalf.UPPER).with(STAGE, getStageForTime(worldIn.getDayTime())), 3);
+        worldIn.setBlock(pos.above(), this.defaultBlockState().setValue(HALF, DoubleBlockHalf.UPPER).setValue(STAGE, getStageForTime(worldIn.getDayTime())), 3);
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder)
     {
-        super.fillStateContainer(builder);
+        super.createBlockStateDefinition(builder);
         builder.add(STAGE);
     }
 
@@ -80,8 +80,8 @@ public class MovingSunflowerBlock extends TallFlowerBlock
     @Override
     public void placeAt(IWorld world, BlockPos pos, int flags)
     {
-        int stage = getStageForTime(world.getWorldInfo().getDayTime());
-        world.setBlockState(pos, getDefaultState().with(STAGE, stage).with(HALF, DoubleBlockHalf.LOWER), flags);
-        world.setBlockState(pos.up(), getDefaultState().with(STAGE, stage).with(HALF, DoubleBlockHalf.UPPER), flags);
+        int stage = getStageForTime(world.getLevelData().getDayTime());
+        world.setBlock(pos, defaultBlockState().setValue(STAGE, stage).setValue(HALF, DoubleBlockHalf.LOWER), flags);
+        world.setBlock(pos.above(), defaultBlockState().setValue(STAGE, stage).setValue(HALF, DoubleBlockHalf.UPPER), flags);
     }
 }
